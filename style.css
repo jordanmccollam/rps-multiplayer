@@ -1,0 +1,16 @@
+
+.heading {
+    background: url(images/background.png) center;
+    /* background-size: cover; */
+    height: 200px;
+}
+.heading h1 {
+    font-size: 30px;
+}
+.heading span {
+    font-size: 20px;
+}
+
+img {
+    width: 300px;
+}

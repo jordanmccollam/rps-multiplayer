@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>RPS Multiplayer</title>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container mb-5">
+        <!-- ANCHOR heading -->
+        <!-- <div class="heading text-light border-bottom border-dark mb-0"></div> -->
+        <div class="heading text-center border-bottom border-dark mb-0">
+            <h1 class="display-2">RPS<span class="display-4">Multiplayer</span></h1>
+        </div>
+
+        <!-- ANCHOR Prompt -->
+        <div class="row text-center border-bottom border-dark mb-4">
+            <div class="col-12"><h2 class="display-4" id="prompt">Choose your nickname...</h2></div>
+        </div>
+
+        <!-- ANCHOR nickname selection -->
+        <div class="row nicknameSelect">
+            <div class="col-md-3"></div>
+            <div class="col-12 col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="username">And you are?</label>
+                                <input type="text" class="form-control" id="username">
+                            </div>
+                            <button type="submit" class="btn btn-info" id="submit">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+
+        <!-- ANCHOR Options -->
+        <div class="row text-center rpsOptions d-none">
+            <div class="col-12 col-md-4">
+                <button class="btn btn-light"><img src="images/rock.png" alt="Rock"></button>
+            </div>
+            <div class="col-12 col-md-4">
+                <button class="btn btn-light"><img src="images/paper.png" alt="Paper"></button>
+            </div>
+            <div class="col-12 col-md-4">
+                <button class="btn btn-light"><img src="images/scissors.png" alt="Scissors"></button>
+            </div>
+        </div>
+
+    <!-- END of container -->
+    </div>
+
+    
+<!-- jQuery -->
+<script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/6.5.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/6.5.0/firebase-database.js"></script>
+<!-- JS -->
+<script src="app.js"></script>
+</body>
+</html>
