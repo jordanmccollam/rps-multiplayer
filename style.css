@@ -4,11 +4,9 @@
     /* background-size: cover; */
     height: 200px;
 }
-.heading h1 {
-    font-size: 30px;
-}
-.heading span {
-    font-size: 20px;
+
+.bg-custom {
+    background: #28b4e5;
 }
 
 img {
