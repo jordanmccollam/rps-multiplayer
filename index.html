@@ -36,103 +36,120 @@
             <div class="col-12"><h2 class="display-4" id="prompt"></h2></div>
         </div>
 
-        <!-- ANCHOR Auth -->
-        <!-- LOGIN -->
-        <div class="row mb-4" id="login-screen">
-            <div class="col-md-3"></div>
-            <div class="col-12 col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <form>
-                            <div class="form-group">
-                                <label for="login-email">Email:</label>
-                                <input type="email" class="form-control" id="login-email">
-                            </div>
-                            <div class="form-group">
-                                <label for="login-password">Password:</label>
-                                <input type="password" class="form-control" id="login-password">
-                            </div>
-                            <button type="submit" class="btn btn-info" id="submit-login">Submit</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3"></div>
-        </div>
-        <!-- SIGN UP -->
-        <div class="row mb-4" id="signup-screen">
-            <div class="col-md-3"></div>
-            <div class="col-12 col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <form>
-                            <div class="form-group">
-                                <label for="signup-email">Email:</label>
-                                <input type="email" class="form-control" id="signup-email">
-                            </div>
-                            <div class="form-group">
-                                <label for="signup-password">Password:</label>
-                                <input type="password" class="form-control" id="signup-password">
-                            </div>
-                            <button type="submit" class="btn btn-info" id="submit-signup">Submit</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3"></div>
-        </div>
+        <div class="row game-area">
+            <div class="col-12 col-lg-8">
 
-        <!-- ANCHOR matchmaking -->
-        <div class="row" id="matchmaking-screen">
-            <div class="col-md-3"></div>
-            <div class="col-12 col-md-6">
-                <div class="card">
-                    <div class="card-header">
-                        <!-- Available Games
-                        <button class="btn btn-info" id="create-btn">Create Game</button> -->
-                        <div class="row">
-                            <div class="col-6">Available Games</div>
-                            <div class="col-6 text-right"><button class="btn btn-info" id="create-btn">Create Game</button></div>
+                <!-- ANCHOR Auth -->
+                <!-- LOGIN -->
+                <div class="row mb-4" id="login-screen">
+                    <!-- <div class="col-md-3"></div> -->
+                    <div class="col-12">
+                        <div class="card border border-info">
+                            <div class="card-body">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="login-email">Email:</label>
+                                        <input type="email" class="form-control" id="login-email">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="login-password">Password:</label>
+                                        <input type="password" class="form-control" id="login-password">
+                                    </div>
+                                    <button type="submit" class="btn btn-info" id="submit-login">Submit</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
-                    <div class="card-body">
-                        <div id="available-games" class="text-center"></div>
-                    </div>
+                    <!-- <div class="col-md-3"></div> -->
                 </div>
-            </div>
-            <div class="col-md-3"></div>
-        </div>
-
-        <!-- ANCHOR Options -->
-        <div class="row text-center mb-4" id="rps-screen">
-            <div class="col-12 col-md-4">
-                <button class="btn btn-light"><img src="images/rock.png" alt="Rock"></button>
-            </div>
-            <div class="col-12 col-md-4">
-                <button class="btn btn-light"><img src="images/paper.png" alt="Paper"></button>
-            </div>
-            <div class="col-12 col-md-4">
-                <button class="btn btn-light"><img src="images/scissors.png" alt="Scissors"></button>
-            </div>
-        </div>
-
-        <!-- ANCHOR CHAT -->
-        <div class="row" id="chat-screen">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-header">
-                        Chat
-                    </div>
-                    <div class="card-body">
-                        <div id="chat-display">Blah blah</div>
-                        <form class="mt-3">
-                            <div class="form-group">
-                                <input type="text" class="form-control">
+                <!-- SIGN UP -->
+                <div class="row mb-4" id="signup-screen">
+                    <!-- <div class="col-md-3"></div> -->
+                    <div class="col-12">
+                        <div class="card border border-info">
+                            <div class="card-body">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="signup-email">Email:</label>
+                                        <input type="email" class="form-control" id="signup-email">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="signup-password">Password:</label>
+                                        <input type="password" class="form-control" id="signup-password">
+                                    </div>
+                                    <button type="submit" class="btn btn-info" id="submit-signup">Submit</button>
+                                </form>
                             </div>
-                            <button type="submit" class="btn btn-info">Send</button>
-                        </form>
+                        </div>
                     </div>
+                    <!-- <div class="col-md-3"></div> -->
                 </div>
+
+                <!-- ANCHOR matchmaking -->
+                <div class="row" id="matchmaking-screen">
+                    <!-- <div class="col-md-3"></div> -->
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <!-- Available Games
+                                <button class="btn btn-info" id="create-btn">Create Game</button> -->
+                                <div class="row">
+                                    <div class="col-6">Available Games</div>
+                                    <div class="col-6 text-right"><button class="btn btn-info" id="create-btn">Create Game</button></div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div id="available-games" class="text-center"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col-md-3"></div> -->
+                </div>
+
+                <!-- ANCHOR Game -->
+                <div class="row text-center mb-4" id="rps-screen">
+                    <div class="col-12 col-md-4">
+                        <button class="btn btn-light rpsOption" id="rock"><img src="images/rock.png" alt="Rock"></button>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <button class="btn btn-light rpsOption" id="paper"><img src="images/paper.png" alt="Paper"></button>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <button class="btn btn-light rpsOption" id="scissors"><img src="images/scissors.png" alt="Scissors"></button>
+                    </div>
+
+                    <!-- wins -->
+                    <div class="col-12 mt-1" id="creatorWins-display"></div>
+                    <div class="col-12 mt-1" id="joinerWins-display"></div>
+                    <div class="col-12 mt-1" id="ties-display"></div>
+                </div>
+
+            </div>
+
+            <div class="col-12 col-lg-4">
+
+                <!-- ANCHOR CHAT -->
+                <div class="row" id="chat-screen">
+                    <!-- <div class="col-md-3"></div> -->
+                    <div class="col-12">
+                        <div class="card border border-info">
+                            <div class="card-header">
+                                Chat
+                            </div>
+                            <div class="card-body">
+                                <div id="chat-display"></div>
+                                <form class="mt-3">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="message-field">
+                                    </div>
+                                    <button type="submit" class="btn btn-info" id="chat-submit">Send</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col-md-3"></div> -->
+                </div>
+
             </div>
         </div>
 
@@ -150,6 +167,10 @@
 <script src="https://www.gstatic.com/firebasejs/6.5.0/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/6.5.0/firebase-database.js"></script>
 <!-- JS -->
-<script src="app.js"></script>
+<!-- <script src="app.js"></script> -->
+<script src="script.js"></script>
+<script src="session.js"></script>
+<script src="chat.js"></script>
+<script src="game.js"></script>
 </body>
 </html>

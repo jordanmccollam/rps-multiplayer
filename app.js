@@ -15,6 +15,8 @@ var firebaseConfig = {
 
 $(document).ready(function(){
 
+    // SECTION Logging in ---------------------------------------------------------
+    // ANCHOR already signed in or signed out
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
             // user is signed in
@@ -43,7 +45,7 @@ $(document).ready(function(){
         $("#login-screen").hide();
         $("#signup-screen").hide();
         $("#rps-screen").hide();
-        $("#chat-screen").hide();
+        // $("#chat-screen").show();
         $("#loggedin-true").hide();
         $("#loggedin-false").show();
         $("#prompt").html("Please Log In");
@@ -99,30 +101,98 @@ $(document).ready(function(){
     function logout() {
         firebase.auth().signOut();
     }
+    // -----------------------------------------------------------------------------
 
+
+
+
+    // SECTION chat -----------------------------------------------------------------
+    $("#chat-submit").on("click", function() {
+        event.preventDefault();
+        chatMessage();
+    })
+    function chatMessage() {
+        ref = database.ref("/chat");
+        messageField = $("#message-field").val();
+
+        ref.push().set({
+            name: firebase.auth().currentUser.email,
+            message: messageField
+        });
+        $("#message-field").val("");
+    }
+
+    database.ref("/chat").on("child_added", function(snapshot) {
+        var message = snapshot.val();
+        var row = $("<div class='row mb-1 pb-1 border-bottom'>");
+        $(row).append(
+            "<strong class='ml-3'>" + message.name + "_",
+            message.message
+        );
+        $("#chat-display").append(row);
+    })
+    // -------------------------------------------------------------------------------------
+
+
+
+    // SECTION matchmaking -----------------------------------------------------------------
     // ANCHOR create game
     $("#create-btn").on('click', function() {
         createGame();
     })
-    function createGame() {
-        var user = firebase.auth().currentUser.email;
 
-        database.ref("/game").push({
-            userSearching: user
+    function createGame() {
+        var user = firebase.auth().currentUser;
+        var currentGame = {
+            creator: {uid: user.uid, displayName: user.email},
+            state: STATE.OPEN
+        };
+
+        database.ref("/games").push().set({currentGame});
+    }
+
+    function joinGame(key) {
+        var user = firebase.auth().currentUser;
+        var gameRef = database.ref("/games").child(key);
+        gameRef.transaction(function(game) {
+            if (!game.joiner) {
+                game.state = STATE.JOINED;
+                game.joiner = {uid: user.uid, displayName: user.email}
+            }
+            return game;
         })
     }
 
-    database.ref("/game").on("child_added", function(childSnapshot) {
+    // Open Games
+    var openGames = database.ref("/games").orderBychild("state").equalTo(STATE.OPEN);
+    openGames.on("child_added", function(snapshot) {
+        var data = snapshot.val();
 
-        $("#available-games").append(
-            "<button class='btn btn-success game-btn' id='" + childSnapshot.val().userSearching + "'>" + firebase.auth().currentUser.email
-        );
+        // ignore own games
+        if (data.creator.uid != firebase.auth().currentUser.uid) {
+            addJoinGameBtn(snapshot.key, data);
+        }
     })
 
-        $(".game-btn").on('click', function() {
-            
-        })
+    // Remove game
+    openGames.on("child_removed", function(snapshot) {
+        var item = $("#" + snapshot.key);
+        if (item) {
+            item.remove();
+        }
+    })
 
+    // database.ref("/games").on("child_added", function(childSnapshot) {
+
+    //     $("#available-games").append(
+    //         "<button class='btn btn-success game-btn' id='" + childSnapshot.val().userSearching + "'>" + childSnapshot.val().userSearching
+    //     );
+    // })
+
+    //     $(".game-btn").on('click', function() {
+
+    //     })
+    // -----------------------------------------------------------------------------
     
 
 // END of .ready
