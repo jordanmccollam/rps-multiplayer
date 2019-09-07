@@ -111,10 +111,16 @@ $(document).ready(function() {
 
         var gameRef = ref.child(key).child("currentGame");
 
-        gameRef.update({
-            currentTurn: "creator",
-            state: "STATE.FIRSTTURN"
+        gameRef.on("value", function(snapshot) {
+            gameRef.update({
+                currentTurn: snapshot.val().creator.displayName,
+                state: "STATE.FIRSTTURN"
+            })
         })
+        // gameRef.update({
+        //     currentTurn: "creator",
+        //     state: "STATE.FIRSTTURN"
+        // })
     }
 
     function firstTurn(key) {
@@ -123,14 +129,13 @@ $(document).ready(function() {
         gameRef.on("value", function(snapshot) {
             var joiner = snapshot.val().joiner.displayName;
             $("#prompt").html(joiner + "'s turn");
-        })
 
         // Users Select RPS
         $("#rock").on("click", function() {
             gameRef.transaction(function(game) {
-                if(game.currentTurn === "creator" && game.player1 === "") {
+                if(firebase.auth().currentUser.email == snapshot.val().creator.displayName) {
                     game.player1 = "rock"
-                    game.currentTurn = "joiner"
+                    game.currentTurn = snapshot.val().creator.displayName
                     game.state = "STATE.NEXTTURN"
                 }
                 return game;
@@ -138,9 +143,9 @@ $(document).ready(function() {
         })
         $("#paper").on("click", function() {
             gameRef.transaction(function(game) {
-                if(game.currentTurn === "creator" && game.player1 === "") {
+                if(firebase.auth().currentUser.email == snapshot.val().creator.displayName) {
                     game.player1 = "paper"
-                    game.currentTurn = "joiner"
+                    game.currentTurn = snapshot.val().creator.displayName
                     game.state = "STATE.NEXTTURN"
                 }
                 return game;
@@ -148,13 +153,14 @@ $(document).ready(function() {
         })
         $("#scissors").on("click", function() {
             gameRef.transaction(function(game) {
-                if(game.currentTurn === "creator" && game.player1 === "") {
+                if(firebase.auth().currentUser.email == snapshot.val().creator.displayName) {
                     game.player1 = "scissors"
-                    game.currentTurn = "joiner"
+                    game.currentTurn = snapshot.val().creator.displayName
                     game.state = "STATE.NEXTTURN"
                 }
                 return game;
             })
+        })
         })
     }
 
@@ -170,9 +176,9 @@ $(document).ready(function() {
         // Users Select RPS
         $("#rock").on("click", function() {
             gameRef.transaction(function(game) {
-                if (game.currentTurn === "joiner" && game.player2 === "") {
+                if (firebase.auth().currentUser.email == snapshot.val().joiner.displayName) {
                     game.player2 = "rock"
-                    game.currentTurn = "creator"
+                    game.currentTurn = snapshot.val().joiner.displayName
                     game.state = "STATE.COMPARE"
                 }
                 return game;
@@ -180,9 +186,9 @@ $(document).ready(function() {
         })
         $("#paper").on("click", function() {
             gameRef.transaction(function(game) {
-                if (game.currentTurn === "joiner" && game.player2 === "") {
+                if (firebase.auth().currentUser.email == snapshot.val().joiner.displayName) {
                     game.player2 = "paper"
-                    game.currentTurn = "creator"
+                    game.currentTurn = snapshot.val().joiner.displayName
                     game.state = "STATE.COMPARE"
                 }
                 return game;
@@ -190,9 +196,9 @@ $(document).ready(function() {
         })
         $("#scissors").on("click", function() {
             gameRef.transaction(function(game) {
-                if (game.currentTurn === "joiner" && game.player2 === "") {
+                if (firebase.auth().currentUser.email == snapshot.val().joiner.displayName) {
                     game.player2 = "scissors"
-                    game.currentTurn = "creator"
+                    game.currentTurn = snapshot.val().joiner.displayName
                     game.state = "STATE.COMPARE"
                 }
                 return game;
