@@ -6,6 +6,11 @@ $(document).ready(function() {
     // ANCHOR create game
     $("#create-btn").on('click', function() {
         createGame();
+
+        var openGames = ref.orderByChild("currentGame/state").equalTo("STATE.OPEN");
+        openGames.on("child_added", function(snapshot) {
+            watchGame(snapshot.key);
+        })
     })
     function createGame() {
         var user = firebase.auth().currentUser;
@@ -37,7 +42,7 @@ $(document).ready(function() {
     }
 
     // ANCHOR Open Games
-    var openGames = ref.orderByChild("currentGame/state").equalTo("STATE.OPEN");
+    var openGames = ref.orderByChild("currentGame/state").equalTo("STATE.OPEN"); 
     openGames.on("child_added", function(snapshot) {
         var data = snapshot.val();
 
@@ -52,16 +57,17 @@ $(document).ready(function() {
             );
         }
 
+        // ANCHOR Join btn
         $(".game-btn").on("click", function() {
             joinGame(snapshot.key);
-            watchGame(snapshot.key)
+            watchGame(snapshot.key);
         })
         $("." + snapshot.key).on("click", function() {
             firebase.database().ref("/games/" + snapshot.key).remove();
         })
     })
 
-    // Remove game
+    // ANCHOR Remove game
     openGames.on("child_removed", function(snapshot) {
         var item = $("#" + snapshot.key);
         if (item) {
@@ -69,6 +75,7 @@ $(document).ready(function() {
         }
     })
 
+    // ANCHOR Watch game
     function watchGame(key) {
         var gameRef = ref.child(key).child("currentGame");
         gameRef.on("value", function(snapshot) {
